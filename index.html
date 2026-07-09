@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fayz Print - iOS Glass Vizitka & Admin Panel</title>
+    <title>Fayz Print - iOS Glass Vizitka</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -46,8 +45,8 @@
         /* Dynamic Island Expand Animations */
         @keyframes island-expand {
             0% { width: 120px; height: 36px; border-radius: 999px; }
-            15% { width: 340px; height: 85px; border-radius: 28px; }
-            85% { width: 340px; height: 85px; border-radius: 28px; }
+            15% { width: 340px; height: 80px; border-radius: 28px; }
+            85% { width: 340px; height: 80px; border-radius: 28px; }
             100% { width: 120px; height: 36px; border-radius: 999px; }
         }
         .dynamic-island-active {
@@ -64,34 +63,17 @@
             background-size: 200% 100%;
             animation: shimmer 3s infinite linear;
         }
-
-        /* Custom scrollbar for modern lists */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
-        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-start p-4 md:p-8 relative select-none pb-20">
+<body class="min-h-screen flex flex-col items-center justify-start p-4 md:p-8 relative select-none">
 
     <!-- iOS Yuqori Status Satri Simulyatsiyasi -->
     <div class="w-full max-w-sm flex justify-between items-center text-white/70 px-6 pt-2 pb-1 text-xs font-semibold z-20">
         <span id="ios-time">12:00</span>
-        <div class="flex items-center gap-2.5">
+        <div class="flex items-center gap-1.5">
             <i data-lucide="signal" class="w-3.5 h-3.5"></i>
             <span class="text-[10px]">5G</span>
             <i data-lucide="battery" class="w-4 h-4"></i>
-            <!-- Admin Panelga O'tish Maxfiy Tugmasi -->
-            <button onclick="openPasscodeScreen()" class="p-1 hover:text-lime-400 transition-colors cursor-pointer" title="Admin Panel">
-                <i data-lucide="shield-alert" class="w-4 h-4"></i>
-            </button>
         </div>
     </div>
 
@@ -117,7 +99,7 @@
     </div>
 
     <!-- Asosiy Premium Shisha Vizitka -->
-    <div class="w-full max-w-sm ios-glass rounded-[40px] p-6 z-10 relative mb-8">
+    <div class="w-full max-w-sm ios-glass rounded-[40px] p-6 z-10 relative mb-12">
         
         <!-- Yubiley nishoni (Yaltiraydigan effekt) -->
         <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-white/15 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold tracking-widest uppercase px-4 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 shimmer-badge">
@@ -173,9 +155,10 @@
                     </div>
                 </a>
 
-                <!-- Instagram -->
+                <!-- Instagram (JPG/PNG formatdagi premium 3D logotip bilan) -->
                 <a href="https://www.instagram.com/fayz_print77?igsh=MWZmZW9xMW1tc2sxNA==" target="_blank" onclick="showDynamicIsland('Instagram sahifamiz yuklanmoqda... 📸', 'instagram')" class="ios-btn flex items-center justify-between p-4 text-white group">
                     <div class="flex items-center gap-3">
+                        <!-- Instagram JPG/PNG formatdagi premium ikonka -->
                         <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center overflow-hidden border border-white/10">
                             <img src="https://img.icons8.com/color/96/instagram-new--v1.png" alt="Instagram logo" class="w-6 h-6 object-contain">
                         </div>
@@ -292,37 +275,22 @@
 
             </div>
 
-            <!-- Interaktiv Fikr va Baholash Bo'limi (YANGI) -->
-            <div class="ios-glass-dark rounded-2xl p-4 space-y-4">
-                <div class="text-center">
-                    <span class="block text-xs font-semibold text-white/60 uppercase tracking-widest mb-1">Fikr va mulohaza qoldiring</span>
-                    <span class="block text-[10px] text-white/30">Xizmatlarimiz va sifat haqida o'z fikringizni yozing</span>
+            <!-- Baholash Bo'limi (Telegram Botga yo'naltirilgan) -->
+            <div class="ios-glass-dark rounded-2xl p-4 text-center">
+                <span class="block text-xs font-semibold text-white/50 uppercase tracking-widest mb-1">Xizmatimizni baholang</span>
+                <span class="block text-[10px] text-white/30 mb-3">Baho bering va fikringizni botga yuboring</span>
+                
+                <div class="flex justify-center gap-2 mb-2" id="stars-container">
+                    <button onclick="rateService(1)" class="focus:outline-none ios-btn animate-pulse" aria-label="1 Star"><i data-lucide="star" class="w-7 h-7 text-white/20 fill-transparent cursor-pointer"></i></button>
+                    <button onclick="rateService(2)" class="focus:outline-none ios-btn" aria-label="2 Stars"><i data-lucide="star" class="w-7 h-7 text-white/20 fill-transparent cursor-pointer"></i></button>
+                    <button onclick="rateService(3)" class="focus:outline-none ios-btn" aria-label="3 Stars"><i data-lucide="star" class="w-7 h-7 text-white/20 fill-transparent cursor-pointer"></i></button>
+                    <button onclick="rateService(4)" class="focus:outline-none ios-btn" aria-label="4 Stars"><i data-lucide="star" class="w-7 h-7 text-white/20 fill-transparent cursor-pointer"></i></button>
+                    <button onclick="rateService(5)" class="focus:outline-none ios-btn" aria-label="5 Stars"><i data-lucide="star" class="w-7 h-7 text-white/20 fill-transparent cursor-pointer"></i></button>
                 </div>
-
-                <!-- Yulduzli baholash selectori -->
-                <div class="flex justify-center gap-2" id="stars-container">
-                    <button type="button" onclick="setFeedbackRating(1)" class="focus:outline-none ios-btn" aria-label="1 Star"><i data-lucide="star" class="w-7 h-7 text-white/20 fill-transparent cursor-pointer transition-transform hover:scale-110"></i></button>
-                    <button type="button" onclick="setFeedbackRating(2)" class="focus:outline-none ios-btn" aria-label="2 Stars"><i data-lucide="star" class="w-7 h-7 text-white/20 fill-transparent cursor-pointer transition-transform hover:scale-110"></i></button>
-                    <button type="button" onclick="setFeedbackRating(3)" class="focus:outline-none ios-btn" aria-label="3 Stars"><i data-lucide="star" class="w-7 h-7 text-white/20 fill-transparent cursor-pointer transition-transform hover:scale-110"></i></button>
-                    <button type="button" onclick="setFeedbackRating(4)" class="focus:outline-none ios-btn" aria-label="4 Stars"><i data-lucide="star" class="w-7 h-7 text-white/20 fill-transparent cursor-pointer transition-transform hover:scale-110"></i></button>
-                    <button type="button" onclick="setFeedbackRating(5)" class="focus:outline-none ios-btn" aria-label="5 Stars"><i data-lucide="star" class="w-7 h-7 text-white/20 fill-transparent cursor-pointer transition-transform hover:scale-110"></i></button>
-                </div>
-                <p id="rating-feedback" class="text-center text-xs text-lime-300 font-medium min-h-[16px] transition-all duration-300 opacity-0"></p>
-
-                <!-- Matnli Fikr Shakli -->
-                <form id="feedback-form" onsubmit="submitClientFeedback(event)" class="space-y-2 border-t border-white/5 pt-3">
-                    <input type="text" id="feedback-name" placeholder="Ismingiz" required class="w-full bg-slate-900/40 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/30 focus:outline-none focus:border-lime-400 focus:bg-slate-900/60 transition-all">
-                    <input type="tel" id="feedback-phone" placeholder="Telefon raqamingiz" required class="w-full bg-slate-900/40 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/30 focus:outline-none focus:border-lime-400 focus:bg-slate-900/60 transition-all">
-                    <textarea id="feedback-message" placeholder="Taklif va fikringizni yozib qoldiring..." rows="3" required class="w-full bg-slate-900/40 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/30 focus:outline-none focus:border-lime-400 focus:bg-slate-900/60 transition-all resize-none"></textarea>
-                    
-                    <button type="submit" class="w-full bg-gradient-to-r from-lime-400 to-emerald-500 hover:from-lime-500 hover:to-emerald-600 text-slate-950 text-xs font-bold py-2.5 rounded-xl transition-all shadow-md transform active:scale-95">
-                        Fikrni yuborish
-                    </button>
-                </form>
-
-                <!-- Telegram Botga yuborish tugmasi (Muqobil variant sifatida) -->
-                <div id="bot-redirect-container" class="hidden transition-all duration-300 text-center">
-                    <span class="block text-[10px] text-white/40 mb-2">Yoki fikringizni Telegram Bot orqali ham yuboring:</span>
+                <p id="rating-feedback" class="text-xs text-lime-300 font-medium min-h-[16px] transition-all duration-300 opacity-0 mb-2"></p>
+                
+                <!-- Telegram Botga yuborish tugmasi -->
+                <div id="bot-redirect-container" class="hidden transition-all duration-300">
                     <a id="telegram-bot-link" href="#" target="_blank" class="ios-btn inline-flex items-center justify-center gap-1.5 bg-[#229ED9] hover:bg-[#229ED9]/90 text-white text-xs font-bold py-2 px-5 rounded-xl shadow-lg w-full">
                         <i data-lucide="send" class="w-4 h-4 fill-white/10"></i>
                         Fikrni Telegramda tasdiqlash
@@ -340,325 +308,14 @@
 
     </div>
 
-    <!-- iOS PASSCODE SCREEN OVERLAY (PIN-KOD EKRANI) -->
-    <div id="passcode-screen" class="fixed inset-0 bg-[#0b1528]/95 backdrop-blur-2xl z-[100] hidden flex flex-col items-center justify-center text-white">
-        <!-- Close button -->
-        <button onclick="closePasscodeScreen()" class="absolute top-6 right-6 p-2 rounded-full bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors">
-            <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-
-        <div class="flex flex-col items-center max-w-sm w-full px-8 text-center">
-            <div class="w-12 h-12 rounded-2xl bg-lime-500/10 border border-lime-500/20 flex items-center justify-center mb-4">
-                <i data-lucide="lock" class="w-6 h-6 text-lime-400"></i>
-            </div>
-            <h2 class="text-xl font-bold tracking-tight mb-1">Admin Kodini Kiriting</h2>
-            <p class="text-xs text-white/40 mb-8">Boshqaruv paneliga kirish uchun PIN kodni kiritishingiz kerak</p>
-
-            <!-- Passcode dots indicator -->
-            <div class="flex justify-center gap-4 mb-10">
-                <div class="passcode-dot w-3.5 h-3.5 rounded-full border border-white/40 transition-all duration-150"></div>
-                <div class="passcode-dot w-3.5 h-3.5 rounded-full border border-white/40 transition-all duration-150"></div>
-                <div class="passcode-dot w-3.5 h-3.5 rounded-full border border-white/40 transition-all duration-150"></div>
-                <div class="passcode-dot w-3.5 h-3.5 rounded-full border border-white/40 transition-all duration-150"></div>
-            </div>
-
-            <!-- Lock Keypad -->
-            <div class="grid grid-cols-3 gap-x-6 gap-y-4 max-w-[280px]">
-                <button onclick="pressKey('1')" class="w-[72px] h-[72px] rounded-full bg-white/5 border border-white/10 hover:bg-white/10 active:bg-white/20 flex items-center justify-center text-2xl font-light transition-all">1</button>
-                <button onclick="pressKey('2')" class="w-[72px] h-[72px] rounded-full bg-white/5 border border-white/10 hover:bg-white/10 active:bg-white/20 flex items-center justify-center text-2xl font-light transition-all">2</button>
-                <button onclick="pressKey('3')" class="w-[72px] h-[72px] rounded-full bg-white/5 border border-white/10 hover:bg-white/10 active:bg-white/20 flex items-center justify-center text-2xl font-light transition-all">3</button>
-                <button onclick="pressKey('4')" class="w-[72px] h-[72px] rounded-full bg-white/5 border border-white/10 hover:bg-white/10 active:bg-white/20 flex items-center justify-center text-2xl font-light transition-all">4</button>
-                <button onclick="pressKey('5')" class="w-[72px] h-[72px] rounded-full bg-white/5 border border-white/10 hover:bg-white/10 active:bg-white/20 flex items-center justify-center text-2xl font-light transition-all">5</button>
-                <button onclick="pressKey('6')" class="w-[72px] h-[72px] rounded-full bg-white/5 border border-white/10 hover:bg-white/10 active:bg-white/20 flex items-center justify-center text-2xl font-light transition-all">6</button>
-                <button onclick="pressKey('7')" class="w-[72px] h-[72px] rounded-full bg-white/5 border border-white/10 hover:bg-white/10 active:bg-white/20 flex items-center justify-center text-2xl font-light transition-all">7</button>
-                <button onclick="pressKey('8')" class="w-[72px] h-[72px] rounded-full bg-white/5 border border-white/10 hover:bg-white/10 active:bg-white/20 flex items-center justify-center text-2xl font-light transition-all">8</button>
-                <button onclick="pressKey('9')" class="w-[72px] h-[72px] rounded-full bg-white/5 border border-white/10 hover:bg-white/10 active:bg-white/20 flex items-center justify-center text-2xl font-light transition-all">9</button>
-                
-                <button onclick="clearKeys()" class="w-[72px] h-[72px] flex items-center justify-center text-xs font-semibold text-white/60 active:text-white hover:bg-white/5 rounded-full transition-all">C</button>
-                <button onclick="pressKey('0')" class="w-[72px] h-[72px] rounded-full bg-white/5 border border-white/10 hover:bg-white/10 active:bg-white/20 flex items-center justify-center text-2xl font-light transition-all">0</button>
-                <button onclick="backspaceKey()" class="w-[72px] h-[72px] flex items-center justify-center text-white/60 active:text-white hover:bg-white/5 rounded-full transition-all">
-                    <i data-lucide="delete" class="w-5 h-5"></i>
-                </button>
-            </div>
-            
-            <p class="text-[10px] text-lime-400/60 mt-8 font-medium">Fayz Print admin</p>
-        </div>
-    </div>
-
-    <!-- iOS ADMIN DASHBOARD PANEL (BOSHQARUV PANELI) -->
-    <div id="admin-panel" class="fixed inset-0 bg-[#070c16]/98 backdrop-blur-3xl z-[110] hidden flex flex-col text-white">
-        <!-- Header -->
-        <div class="border-b border-white/10 px-6 py-4 flex items-center justify-between shrink-0">
-            <div class="flex items-center gap-2.5">
-                <div class="w-8 h-8 rounded-lg bg-lime-500/20 flex items-center justify-center">
-                    <i data-lucide="layout-dashboard" class="w-[18px] h-[18px] text-lime-400"></i>
-                </div>
-                <div>
-                    <h2 class="font-bold text-sm tracking-tight text-white">Boshqaruv Paneli</h2>
-                    <p class="text-[9px] text-white/40 uppercase tracking-widest font-semibold">Fayz Print Admin</p>
-                </div>
-            </div>
-            <!-- Top Controls -->
-            <div class="flex items-center gap-2">
-                <button onclick="exportToCSV()" class="ios-btn p-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all flex items-center gap-1.5 text-xs font-semibold">
-                    <i data-lucide="download" class="w-3.5 h-3.5 text-lime-400"></i>
-                    <span class="hidden sm:inline">Eksport</span>
-                </button>
-                <button onclick="logoutAdmin()" class="ios-btn p-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 transition-all flex items-center gap-1.5 text-xs font-semibold">
-                    <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
-                    <span>Chiqish</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Dashboard Content Grid -->
-        <div class="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 max-w-5xl w-full mx-auto">
-            
-            <!-- Statistika Bo'limi -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <div class="ios-glass-dark p-4 rounded-2xl flex flex-col justify-between">
-                    <span class="text-[10px] text-white/40 uppercase tracking-wider font-bold">Jami ovozlar</span>
-                    <div class="flex items-baseline gap-1 mt-2">
-                        <span id="stat-total-votes" class="text-2xl font-black text-white">0</span>
-                        <span class="text-[10px] text-lime-400 font-semibold">ta</span>
-                    </div>
-                </div>
-                <div class="ios-glass-dark p-4 rounded-2xl flex flex-col justify-between">
-                    <span class="text-[10px] text-white/40 uppercase tracking-wider font-bold">O'rtacha baho</span>
-                    <div class="flex items-baseline gap-1 mt-2">
-                        <span id="stat-avg-rating" class="text-2xl font-black text-yellow-400">0.0</span>
-                        <span class="text-[10px] text-yellow-400/60 font-semibold">/ 5.0</span>
-                    </div>
-                </div>
-                <div class="ios-glass-dark p-4 rounded-2xl flex flex-col justify-between">
-                    <span class="text-[10px] text-white/40 uppercase tracking-wider font-bold">Aloqa so'rovlari</span>
-                    <div class="flex items-baseline gap-1 mt-2">
-                        <span id="stat-total-contacts" class="text-2xl font-black text-sky-400">0</span>
-                        <span class="text-[10px] text-sky-400/60 font-semibold">ta</span>
-                    </div>
-                </div>
-                <div class="ios-glass-dark p-4 rounded-2xl flex flex-col justify-between">
-                    <span class="text-[10px] text-white/40 uppercase tracking-wider font-bold">Ijobiy fikrlar</span>
-                    <div class="flex items-baseline gap-1 mt-2">
-                        <span id="stat-positive-percent" class="text-2xl font-black text-emerald-400">0%</span>
-                        <span class="text-[10px] text-emerald-400/60 font-semibold">nisbat</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Reyting Ta'qsimoti Grafik (HTML elements representation) -->
-            <div class="ios-glass-dark p-5 rounded-3xl">
-                <h3 class="text-xs font-bold uppercase tracking-wider text-white/50 mb-4 flex items-center gap-1.5">
-                    <i data-lucide="bar-chart-3" class="w-4 h-4 text-lime-400"></i>
-                    Yulduzlar taqsimoti
-                </h3>
-                <div class="space-y-2.5">
-                    <!-- 5 yulduz -->
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs text-white/60 w-8 flex items-center gap-0.5">5<i data-lucide="star" class="w-3.5 h-3.5 text-yellow-400 fill-yellow-400"></i></span>
-                        <div class="flex-1 bg-white/5 h-2 rounded-full overflow-hidden">
-                            <div id="bar-5" class="bg-gradient-to-r from-yellow-400 to-amber-500 h-full w-0 transition-all duration-500 rounded-full"></div>
-                        </div>
-                        <span id="bar-5-label" class="text-xs text-white/50 w-12 text-right">0% (0)</span>
-                    </div>
-                    <!-- 4 yulduz -->
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs text-white/60 w-8 flex items-center gap-0.5">4<i data-lucide="star" class="w-3.5 h-3.5 text-yellow-400 fill-yellow-400"></i></span>
-                        <div class="flex-1 bg-white/5 h-2 rounded-full overflow-hidden">
-                            <div id="bar-4" class="bg-gradient-to-r from-yellow-400 to-amber-500 h-full w-0 transition-all duration-500 rounded-full"></div>
-                        </div>
-                        <span id="bar-4-label" class="text-xs text-white/50 w-12 text-right">0% (0)</span>
-                    </div>
-                    <!-- 3 yulduz -->
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs text-white/60 w-8 flex items-center gap-0.5">3<i data-lucide="star" class="w-3.5 h-3.5 text-yellow-400 fill-yellow-400"></i></span>
-                        <div class="flex-1 bg-white/5 h-2 rounded-full overflow-hidden">
-                            <div id="bar-3" class="bg-gradient-to-r from-yellow-400 to-amber-500 h-full w-0 transition-all duration-500 rounded-full"></div>
-                        </div>
-                        <span id="bar-3-label" class="text-xs text-white/50 w-12 text-right">0% (0)</span>
-                    </div>
-                    <!-- 2 yulduz -->
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs text-white/60 w-8 flex items-center gap-0.5">2<i data-lucide="star" class="w-3.5 h-3.5 text-yellow-400 fill-yellow-400"></i></span>
-                        <div class="flex-1 bg-white/5 h-2 rounded-full overflow-hidden">
-                            <div id="bar-2" class="bg-gradient-to-r from-yellow-400 to-amber-500 h-full w-0 transition-all duration-500 rounded-full"></div>
-                        </div>
-                        <span id="bar-2-label" class="text-xs text-white/50 w-12 text-right">0% (0)</span>
-                    </div>
-                    <!-- 1 yulduz -->
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs text-white/60 w-8 flex items-center gap-0.5">1<i data-lucide="star" class="w-3.5 h-3.5 text-yellow-400 fill-yellow-400"></i></span>
-                        <div class="flex-1 bg-white/5 h-2 rounded-full overflow-hidden">
-                            <div id="bar-1" class="bg-gradient-to-r from-red-400 to-red-500 h-full w-0 transition-all duration-500 rounded-full"></div>
-                        </div>
-                        <span id="bar-1-label" class="text-xs text-white/50 w-12 text-right">0% (0)</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Fikr-mulohazalar ro'yxati boshqarish bloki -->
-            <div class="space-y-4">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                    <h3 class="text-sm font-bold uppercase tracking-wider text-white/60 flex items-center gap-1.5">
-                        <i data-lucide="message-square" class="w-4 h-4 text-lime-400"></i>
-                        Kelib tushgan fikrlar
-                    </h3>
-                    
-                    <!-- Search & Filter Actions -->
-                    <div class="flex gap-2 w-full sm:w-auto">
-                        <div class="relative flex-1 sm:flex-initial">
-                            <i data-lucide="search" class="absolute left-3 top-2.5 w-3.5 h-3.5 text-white/30"></i>
-                            <input type="text" id="admin-search" oninput="renderAdminFeedbackList()" placeholder="Ism yoki tel..." class="w-full sm:w-48 pl-8 pr-3 py-1.5 bg-white/5 border border-white/10 rounded-xl text-xs text-white placeholder-white/30 focus:outline-none focus:border-lime-400 focus:bg-white/10 transition-all">
-                        </div>
-                        <select id="admin-rating-filter" onchange="renderAdminFeedbackList()" class="bg-slate-900 border border-white/10 rounded-xl px-3 py-1.5 text-xs text-white/70 focus:outline-none focus:border-lime-400">
-                            <option value="all">Barcha Reytinglar</option>
-                            <option value="5">5 yulduzli</option>
-                            <option value="4">4 yulduzli</option>
-                            <option value="3">3 yulduzli</option>
-                            <option value="2">2 yulduzli</option>
-                            <option value="1">1 yulduzli</option>
-                            <option value="text_only">Yozma takliflar</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Live cards list container -->
-                <div id="admin-feedback-container" class="space-y-3 min-h-[200px]">
-                    <!-- Feedbacks loaded here dynamically -->
-                    <div class="flex flex-col items-center justify-center p-12 text-white/30 space-y-2 bg-white/[0.01] border border-white/5 rounded-3xl">
-                        <i data-lucide="inbox" class="w-10 h-10 animate-bounce"></i>
-                        <p class="text-xs">Xabarlar mavjud emas yoki yuklanmoqda...</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Firebase SDK Modules (ONLY loaded if credentials provided, otherwise uses local Fallbacks) -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, onSnapshot, collection, query, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Firebase Configuration fallback detection
-        let db = null;
-        let auth = null;
-        let user = null;
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'fayz-print-10y';
-
-        // Initialize Firebase safely
-        try {
-            if (typeof __firebase_config !== 'undefined') {
-                const firebaseConfig = JSON.parse(__firebase_config);
-                const app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
-
-                // Sign in logic as strictly instructed
-                const handleAuth = async () => {
-                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                        const credential = await signInWithCustomToken(auth, __initial_auth_token);
-                        user = credential.user;
-                    } else {
-                        const credential = await signInAnonymously(auth);
-                        user = credential.user;
-                    }
-                    console.log("Firebase Auth success. User ID:", user.uid);
-                    
-                    // Bind real-time listener
-                    setupFeedbackSync();
-                };
-                handleAuth();
-            } else {
-                console.warn("Firebase configuration not found. Falling back to local Storage Database.");
-                setupLocalFallbackSync();
-            }
-        } catch (error) {
-            console.error("Firebase init failed, switching to local emulation state:", error);
-            setupLocalFallbackSync();
-        }
-
-        // FIRESTORE SYNC LOGIC
-        function setupFeedbackSync() {
-            if (!db) return;
-            
-            // Rule 1: Strict collection paths
-            const feedbackColRef = collection(db, 'artifacts', appId, 'public', 'data', 'feedback');
-            
-            // Rule 2: Simple query (no orderBy) to prevent index creation requirements
-            onSnapshot(feedbackColRef, (snapshot) => {
-                const list = [];
-                snapshot.forEach((doc) => {
-                    list.push({ id: doc.id, ...doc.data() });
-                });
-                
-                // Sort in memory instead
-                list.sort((a, b) => b.timestamp - a.timestamp);
-                
-                // Update global memory variable and render dashboard
-                window.feedbackDatabase = list;
-                window.refreshAdminDashboard();
-            }, (error) => {
-                console.error("Firestore onSnapshot error callback triggered:", error);
-                // Recover using local backup
-                setupLocalFallbackSync();
-            });
-        }
-
-        // Add feedback securely
-        window.saveFeedbackToDb = async function(data) {
-            if (db) {
-                try {
-                    const feedbackColRef = collection(db, 'artifacts', appId, 'public', 'data', 'feedback');
-                    await addDoc(feedbackColRef, {
-                        ...data,
-                        timestamp: Date.now()
-                    });
-                    return true;
-                } catch (e) {
-                    console.error("Firestore addDoc failed. Fallback save locally:", e);
-                    saveFeedbackToLocalBackup(data);
-                    return true;
-                }
-            } else {
-                saveFeedbackToLocalBackup(data);
-                return true;
-            }
-        };
-
-        // Delete feedback safely
-        window.deleteFeedbackFromDb = async function(id) {
-            if (db) {
-                try {
-                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'feedback', id);
-                    await deleteDoc(docRef);
-                    return true;
-                } catch (e) {
-                    console.error("Firestore deleteDoc failed:", e);
-                    return false;
-                }
-            } else {
-                deleteFeedbackFromLocalBackup(id);
-                return true;
-            }
-        };
-    </script>
-
-    <!-- GENERAL CONTROL SCRIPT -->
     <script>
+        // Bot sozlamalari
         const TELEGRAM_BOT_USERNAME = "fayzprint_bot"; 
-        const DEFAULT_PASSCODE = "3103";
-        let enteredPasscode = "";
-        let selectedRating = 0;
 
-        // In-memory Database for local testing / fallbacks
-        window.feedbackDatabase = [];
-
-        // Lucide Icon activation
+        // Lucide ikonalarini yuklash va sozlash
         lucide.createIcons();
 
-        // Clock component updating every second
+        // Haqiqiy vaqtni (iOS uslubida) ko'rsatuvchi soat funksiyasi
         function updateClock() {
             const timeEl = document.getElementById('ios-time');
             if(timeEl) {
@@ -671,7 +328,7 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // Accordion Management
+        // Akordeon bo'limlarini boshqarish funksiyasi
         function toggleSection(sectionId) {
             const section = document.getElementById(sectionId);
             const isAddress = sectionId === 'address-sec';
@@ -684,7 +341,7 @@
                     chevron.classList.remove('text-lime-400');
                 }
             } else {
-                // Close other accordion
+                // Boshqa akordeonni yopish
                 const otherId = isAddress ? 'contact-sec' : 'address-sec';
                 const otherSection = document.getElementById(otherId);
                 const otherChevron = document.getElementById(isAddress ? 'contact-chevron' : 'address-chevron');
@@ -696,7 +353,7 @@
                     }
                 }
 
-                // Open chosen accordion
+                // Tanlanganini ochish
                 section.style.maxHeight = section.scrollHeight + 'px';
                 if (chevron) {
                     chevron.style.transform = 'rotate(90deg)';
@@ -705,37 +362,26 @@
             }
         }
 
-        // Standard lead capture form submit handler
+        // Aloqa formasini jo'natish simulyatsiyasi
         function handleFormSubmit(event) {
             event.preventDefault();
             const form = event.target;
             const name = form.querySelector('input[type="text"]').value;
-            const phone = form.querySelector('input[type="tel"]').value;
 
-            // Save lead capture as a custom feedback with 0 stars
-            const leadData = {
-                name: name,
-                phone: phone,
-                rating: 0,
-                message: "Tezkor so'rov yubordi (Bog'lanish kutilmoqda).",
-                timestamp: Date.now()
-            };
-
-            if (window.saveFeedbackToDb) {
-                window.saveFeedbackToDb(leadData);
-            }
-
+            // iOS uslubidagi Dynamic Island bildirishnomasi
             showDynamicIsland(`Rahmat, ${name}! Tez orada bog'lanamiz.`, 'check-circle');
             form.reset();
             
+            // Bo'limni yopish
             setTimeout(() => {
                 toggleSection('contact-sec');
             }, 2000);
         }
 
-        // Feedback Star Selector Logic
-        function setFeedbackRating(stars) {
-            selectedRating = stars;
+        // Interaktiv Yulduzchali Baholash Tizimi
+        let currentRating = 0;
+        function rateService(stars) {
+            currentRating = stars;
             const starsContainer = document.getElementById('stars-container');
             const starButtons = starsContainer.getElementsByTagName('button');
             const feedbackText = document.getElementById('rating-feedback');
@@ -755,7 +401,7 @@
                 }
             }
 
-            // Customize message by selected stars
+            // Baholarga muvofiq fikrlar
             let feedback = "";
             switch(stars) {
                 case 1: feedback = "Kamchiliklarimizni tezda bartaraf etamiz! 😟"; break;
@@ -767,350 +413,17 @@
             feedbackText.innerText = feedback;
             feedbackText.style.opacity = '1';
 
-            // Connect Telegram rating fallback link
+            // Telegram bot havolasini tayyorlash
             botLink.href = `https://t.me/${TELEGRAM_BOT_USERNAME}?start=baho_${stars}`;
+            
+            // Botga o'tish tugmasini ko'rsatish
             redirectContainer.classList.remove('hidden');
 
-            showDynamicIsland(`${stars} ball tanlandi! Fikrni yozib yuborishingiz mumkin.`, 'star');
+            // Dynamic Island bildirishnomasi
+            showDynamicIsland(`${stars} ball tanlandi! Botda tasdiqlang.`, 'star');
         }
 
-        // Submit Client Feedback to database
-        async function submitClientFeedback(event) {
-            event.preventDefault();
-            
-            if (selectedRating === 0) {
-                showDynamicIsland("Iltimos, avval yuqoridan yulduzchali baho bering!", "star");
-                return;
-            }
-
-            const name = document.getElementById('feedback-name').value.trim();
-            const phone = document.getElementById('feedback-phone').value.trim();
-            const message = document.getElementById('feedback-message').value.trim();
-
-            const feedbackData = {
-                name: name,
-                phone: phone,
-                rating: selectedRating,
-                message: message,
-                timestamp: Date.now()
-            };
-
-            // Trigger Firestore or Local Database save
-            let success = false;
-            if (window.saveFeedbackToDb) {
-                success = await window.saveFeedbackToDb(feedbackData);
-            } else {
-                saveFeedbackToLocalBackup(feedbackData);
-                success = true;
-            }
-
-            if (success) {
-                showDynamicIsland(`Taklifingiz qabul qilindi! 🎉 Rahmat.`, 'check-circle');
-                
-                // Clear Form state
-                document.getElementById('feedback-form').reset();
-                selectedRating = 0;
-                setFeedbackRating(0); // Reset stars
-                document.getElementById('rating-feedback').style.opacity = '0';
-                document.getElementById('bot-redirect-container').classList.add('hidden');
-            } else {
-                showDynamicIsland(`Xatolik yuz berdi. Qayta urinib ko'ring!`, 'info');
-            }
-        }
-
-        // Local Backup Databases if Firestore configuration is bypassed
-        function setupLocalFallbackSync() {
-            const raw = localStorage.getItem('fayzprint_feedback_emul');
-            if (raw) {
-                window.feedbackDatabase = JSON.parse(raw);
-            } else {
-                // Populate high fidelity mock feedback for instant preview
-                window.feedbackDatabase = [
-                    { id: "mock1", name: "Asilbek Jumayev", phone: "+998901234567", rating: 5, message: "Vizitka tayyorlash xizmati ajoyib! Juda tez va sifatli qilib berishdi. Kattakon rahmat, Fayz Print!", timestamp: Date.now() - 3600000 },
-                    { id: "mock2", name: "Malika Sharipova", phone: "+998939876543", rating: 4, message: "Katta buyurtma bergan edik, mahsulotlar o'z vaqtida chiroyli dizaynda yetkazildi. Salgina ranggi ochroq chiqibdi, lekin qoniqarli.", timestamp: Date.now() - 7200000 },
-                    { id: "mock3", name: "Dilshod To'rayev", phone: "+998914441122", rating: 5, message: "Buxoroda yagona professional bosmaxona! Texnikalari juda yuqori darajada ekan, xursand bo'ldim.", timestamp: Date.now() - 10800000 }
-                ];
-                localStorage.setItem('fayzprint_feedback_emul', JSON.stringify(window.feedbackDatabase));
-            }
-            window.refreshAdminDashboard();
-        }
-
-        function saveFeedbackToLocalBackup(data) {
-            const freshItem = { id: 'local_' + Date.now(), ...data };
-            window.feedbackDatabase.unshift(freshItem);
-            localStorage.setItem('fayzprint_feedback_emul', JSON.stringify(window.feedbackDatabase));
-            window.refreshAdminDashboard();
-        }
-
-        function deleteFeedbackFromLocalBackup(id) {
-            window.feedbackDatabase = window.feedbackDatabase.filter(item => item.id !== id);
-            localStorage.setItem('fayzprint_feedback_emul', JSON.stringify(window.feedbackDatabase));
-            window.refreshAdminDashboard();
-        }
-
-        // PASSCODE MODAL CONTROLS
-        function openPasscodeScreen() {
-            document.getElementById('passcode-screen').classList.remove('hidden');
-            clearKeys();
-        }
-
-        function closePasscodeScreen() {
-            document.getElementById('passcode-screen').classList.add('hidden');
-        }
-
-        function pressKey(number) {
-            if (enteredPasscode.length >= 4) return;
-            
-            enteredPasscode += number;
-            updatePasscodeDots();
-
-            if (enteredPasscode.length === 4) {
-                setTimeout(() => {
-                    verifyPasscode();
-                }, 200);
-            }
-        }
-
-        function clearKeys() {
-            enteredPasscode = "";
-            updatePasscodeDots();
-        }
-
-        function backspaceKey() {
-            if (enteredPasscode.length > 0) {
-                enteredPasscode = enteredPasscode.slice(0, -1);
-                updatePasscodeDots();
-            }
-        }
-
-        function updatePasscodeDots() {
-            const dots = document.querySelectorAll('.passcode-dot');
-            dots.forEach((dot, index) => {
-                if (index < enteredPasscode.length) {
-                    dot.classList.add('bg-white', 'scale-110');
-                    dot.classList.remove('border-white/40');
-                } else {
-                    dot.classList.remove('bg-white', 'scale-110');
-                    dot.classList.add('border-white/40');
-                }
-            });
-        }
-
-        function verifyPasscode() {
-            if (enteredPasscode === DEFAULT_PASSCODE) {
-                showDynamicIsland("Tizimga kirildi! Xush kelibsiz admin 🔓", "unlock");
-                closePasscodeScreen();
-                openAdminPanel();
-            } else {
-                showDynamicIsland("PIN kod noto'g'ri! Qaytadan urining 🔒", "lock");
-                // Animate dots shaking
-                const dotsContainer = document.querySelector('.passcode-dot').parentElement;
-                dotsContainer.classList.add('animate-bounce');
-                setTimeout(() => {
-                    dotsContainer.classList.remove('animate-bounce');
-                }, 500);
-                clearKeys();
-            }
-        }
-
-        // ADMIN PANEL ACTIONS
-        function openAdminPanel() {
-            document.getElementById('admin-panel').classList.remove('hidden');
-            window.refreshAdminDashboard();
-        }
-
-        function logoutAdmin() {
-            document.getElementById('admin-panel').classList.add('hidden');
-            showDynamicIsland("Admin tizimidan chiqildi 👋", "lock");
-        }
-
-        // Refresh statistics and charts
-        window.refreshAdminDashboard = function() {
-            const data = window.feedbackDatabase || [];
-            
-            // Calc stats
-            const totalVotes = data.filter(i => i.rating > 0).length;
-            const jamiSoqqaCount = data.filter(i => i.rating === 0).length; // leads / contacts
-            
-            let avgRating = 0;
-            if (totalVotes > 0) {
-                const totalSum = data.reduce((sum, item) => sum + (item.rating || 0), 0);
-                avgRating = (totalSum / totalVotes).toFixed(1);
-            }
-
-            // Positive ratings (4 and 5 stars)
-            const positiveVotes = data.filter(i => i.rating >= 4).length;
-            const positivePercent = totalVotes > 0 ? Math.round((positiveVotes / totalVotes) * 100) : 0;
-
-            // Render stats card
-            document.getElementById('stat-total-votes').innerText = totalVotes;
-            document.getElementById('stat-avg-rating').innerText = avgRating;
-            document.getElementById('stat-total-contacts').innerText = jamiSoqqaCount;
-            document.getElementById('stat-positive-percent').innerText = positivePercent + "%";
-
-            // Star distribution counts
-            const dist = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
-            data.forEach(item => {
-                if (item.rating && dist[item.rating] !== undefined) {
-                    dist[item.rating]++;
-                }
-            });
-
-            // Update progress bars & percentages
-            for (let stars = 1; stars <= 5; stars++) {
-                const count = dist[stars];
-                const pct = totalVotes > 0 ? Math.round((count / totalVotes) * 100) : 0;
-                
-                const bar = document.getElementById(`bar-${stars}`);
-                const label = document.getElementById(`bar-${stars}-label`);
-                
-                if (bar && label) {
-                    bar.style.width = pct + "%";
-                    label.innerText = `${pct}% (${count})`;
-                }
-            }
-
-            renderAdminFeedbackList();
-        };
-
-        // Render feedback items into dashboard list with searches and filters applied
-        function renderAdminFeedbackList() {
-            const container = document.getElementById('admin-feedback-container');
-            if (!container) return;
-
-            const searchQuery = document.getElementById('admin-search').value.toLowerCase();
-            const filterRating = document.getElementById('admin-rating-filter').value;
-            const data = window.feedbackDatabase || [];
-
-            // Filter in memory securely (Firestore Rule 2 constraint bypass)
-            const filtered = data.filter(item => {
-                const nameMatch = item.name ? item.name.toLowerCase().includes(searchQuery) : false;
-                const phoneMatch = item.phone ? item.phone.toLowerCase().includes(searchQuery) : false;
-                const matchesSearch = nameMatch || phoneMatch;
-
-                if (filterRating === 'all') {
-                    return matchesSearch;
-                } else if (filterRating === 'text_only') {
-                    return matchesSearch && item.rating > 0 && item.message && item.message.length > 0;
-                } else {
-                    return matchesSearch && item.rating === parseInt(filterRating);
-                }
-            });
-
-            if (filtered.length === 0) {
-                container.innerHTML = `
-                    <div class="flex flex-col items-center justify-center p-8 text-white/30 space-y-2 bg-white/[0.01] border border-white/5 rounded-3xl">
-                        <i data-lucide="info" class="w-8 h-8"></i>
-                        <p class="text-xs">Ushbu filtr bo'yicha ma'lumot topilmadi</p>
-                    </div>
-                `;
-                lucide.createIcons();
-                return;
-            }
-
-            let html = '';
-            filtered.forEach(item => {
-                const dateStr = new Date(item.timestamp).toLocaleString('uz-UZ', {
-                    month: 'short',
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
-
-                // Prepare star elements representation
-                let starsHtml = '';
-                if (item.rating > 0) {
-                    for (let s = 1; s <= 5; s++) {
-                        if (s <= item.rating) {
-                            starsHtml += `<i data-lucide="star" class="w-3.5 h-3.5 text-yellow-400 fill-yellow-400 inline"></i>`;
-                        } else {
-                            starsHtml += `<i data-lucide="star" class="w-3.5 h-3.5 text-white/10 inline"></i>`;
-                        }
-                    }
-                } else {
-                    starsHtml = `<span class="bg-sky-500/10 text-sky-400 border border-sky-500/20 text-[9px] font-bold px-2 py-0.5 rounded">Tezkor so'rov</span>`;
-                }
-
-                html += `
-                    <div class="ios-glass-dark p-4 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border border-white/5 hover:border-white/10 transition-all">
-                        <div class="space-y-1.5 flex-1 w-full">
-                            <div class="flex items-center justify-between md:justify-start gap-3">
-                                <span class="text-sm font-bold text-white/95">${item.name || 'Ismsiz mijoz'}</span>
-                                <span class="text-[10px] text-white/30 font-medium">${dateStr}</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <a href="tel:${item.phone}" class="text-xs text-lime-400 hover:underline flex items-center gap-1">
-                                    <i data-lucide="phone" class="w-3 h-3"></i>
-                                    ${item.phone || 'Telefon kiritilmagan'}
-                                </a>
-                                <span class="text-white/10">|</span>
-                                <div class="flex gap-0.5 items-center">
-                                    ${starsHtml}
-                                </div>
-                            </div>
-                            <p class="text-xs text-white/70 leading-relaxed bg-white/[0.02] p-2.5 rounded-lg border border-white/5">${item.message || 'Yozma xabar qoldirilmagan.'}</p>
-                        </div>
-                        <div class="flex items-center gap-2 w-full md:w-auto shrink-0 justify-end">
-                            <button onclick="handleDeleteFeedback('${item.id}')" class="ios-btn p-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 transition-all flex items-center gap-1.5 text-xs font-semibold" title="Fikrni o'chirish">
-                                <i data-lucide="trash-2" class="w-4 h-4"></i>
-                                <span class="md:hidden">O'chirish</span>
-                            </button>
-                        </div>
-                    </div>
-                `;
-            });
-
-            container.innerHTML = html;
-            lucide.createIcons();
-        }
-
-        // Delete handler action
-        async function handleDeleteFeedback(id) {
-            const confirmed = document.getElementById('custom-confirm-modal');
-            if (window.deleteFeedbackFromDb) {
-                showDynamicIsland("Fikr o'chirilmoqda...", "trash-2");
-                const res = await window.deleteFeedbackFromDb(id);
-                if (res) {
-                    showDynamicIsland("Fikr tizimdan butkul o'chirildi ✅", "check-circle");
-                } else {
-                    showDynamicIsland("O'chirishda xatolik yuz berdi", "info");
-                }
-            } else {
-                deleteFeedbackFromLocalBackup(id);
-                showDynamicIsland("Fikr tizimdan o'chirildi ✅", "check-circle");
-            }
-        }
-
-        // Export data to CSV format securely
-        function exportToCSV() {
-            const data = window.feedbackDatabase || [];
-            if (data.length === 0) {
-                showDynamicIsland("Eksport qilish uchun fikrlar mavjud emas!", "info");
-                return;
-            }
-
-            let csvContent = "data:text/csv;charset=utf-8,";
-            csvContent += "ID,Ism,Telefon,Baho,Fikr,Vaqt\n";
-
-            data.forEach(item => {
-                const cleanMsg = item.message ? item.message.replace(/,/g, " ") : "";
-                const cleanName = item.name ? item.name.replace(/,/g, " ") : "";
-                const dateStr = new Date(item.timestamp).toISOString();
-                csvContent += `"${item.id}","${cleanName}","${item.phone}",${item.rating},"${cleanMsg}","${dateStr}"\n`;
-            });
-
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", `fayz_print_feedback_${Date.now()}.csv`);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            showDynamicIsland("CSV fayl yuklab olindi 📈", "download");
-        }
-
-        // Dynamic Island manual clicks fun messages
+        // Dynamic Islandni qo'lda bosganda kutilmagan interaktiv xabarlarni ko'rsatish
         const islandFunMessages = [
             "Ish vaqtimiz: 08:30 dan 18:30 gacha 🕒",
             "Mijozlar ishonchida va xizmatida! ⭐",
@@ -1125,7 +438,7 @@
             messageIndex = (messageIndex + 1) % islandFunMessages.length;
         }
 
-        // Dynamic Island Show / hide engine
+        // iOS Dynamic Island bildirishnoma ko'rsatish tizimi
         let islandTimeout = null;
         function showDynamicIsland(message, iconName = 'bell') {
             const island = document.getElementById('dynamic-island');
@@ -1139,6 +452,7 @@
                 island.classList.remove('dynamic-island-active');
             }
 
+            // Ikonani yangilash
             if(iconEl && iconName) {
                 iconEl.setAttribute('data-lucide', iconName);
                 lucide.createIcons();
